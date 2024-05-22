@@ -1,0 +1,63 @@
+<div class="container">
+  <h1>Clientes</h1>
+  <button class="botao" routerLink="/cliente-form">Adicionar Cliente</button>
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+  <div *ngIf="clientes.length">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Idade</th>
+          <th>Email</th>
+          <th>Número da Conta</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of clientes">
+          <td>{{ cliente.nome }}</td>
+          <td>{{ cliente.idade }}</td>
+          <td>{{ cliente.email }}</td>
+          <td>{{ cliente.numeroConta }}</td>
+          <td>
+            <button
+              class="btn btn-info botao"
+              [routerLink]="['/cliente-detalhes', cliente.email]"
+            >
+              Ver Perfil
+            </button>
+            <button
+              class="btn btn-warning botao"
+              [routerLink]="['/cliente-form', cliente.email]"
+            >
+              Editar
+            </button>
+            <button
+              class="btn btn-danger botao"
+              (click)="deleteCliente(cliente.email)"
+            >
+              Excluir
+            </button>
+            <button
+              class="btn btn-success botao"
+              [routerLink]="['/cliente-transacao', cliente.email]"
+            >
+              Transação
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item" [class.disabled]="page === 0">
+          <button class="page-link" (click)="previousPage()">Anterior</button>
+        </li>
+        <li class="page-item" [class.disabled]="page === totalPages - 1">
+          <button class="page-link" (click)="nextPage()">Próxima</button>
+        </li>
+      </ul>
+    </nav>
+    <p>Mostrando página {{ page + 1 }} de {{ totalPages }}</p>
+  </div>
+</div>

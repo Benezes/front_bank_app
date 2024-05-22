@@ -1,0 +1,33 @@
+<div class="container">
+  <app-back-button></app-back-button>
+  <br />
+  <h1>Realizar Transação</h1>
+  <form (ngSubmit)="saveTransacao()">
+    <div class="mb-3">
+      <label for="valor" class="form-label">Valor</label>
+      <input
+        type="number"
+        class="form-control"
+        id="valor"
+        [(ngModel)]="transacao.valor"
+        name="valor"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="tipoTransacao" class="form-label">Tipo de Transação</label>
+      <select
+        class="form-control"
+        id="tipoTransacao"
+        [(ngModel)]="transacao.tipoTransacao"
+        name="tipoTransacao"
+        required
+      >
+        <option value="CREDITO">Crédito</option>
+        <option value="DEBITO">Débito</option>
+      </select>
+    </div>
+    <button type="submit" class="botao">Realizar Transação</button>
+    <div *ngIf="error" class="alert alert-danger mt-3">{{ error }}</div>
+  </form>
+</div>

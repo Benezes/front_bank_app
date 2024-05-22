@@ -1,0 +1,55 @@
+<div class="container">
+  <app-back-button></app-back-button>
+  <br />
+  <h1>{{ isEdit ? "Editar Cliente" : "Adicionar Cliente" }}</h1>
+  <form (ngSubmit)="saveCliente()">
+    <div class="mb-3">
+      <label for="nome" class="form-label">Nome</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nome"
+        [(ngModel)]="cliente.nome"
+        name="nome"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="idade" class="form-label">Idade</label>
+      <input
+        type="number"
+        class="form-control"
+        id="idade"
+        [(ngModel)]="cliente.idade"
+        name="idade"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        [(ngModel)]="cliente.email"
+        name="email"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="numeroConta" class="form-label">Número da Conta</label>
+      <input
+        type="text"
+        class="form-control"
+        id="numeroConta"
+        [(ngModel)]="cliente.numeroConta"
+        name="numeroConta"
+        required
+      />
+    </div>
+    <button type="submit" class="botao">
+      {{ isEdit ? "Salvar" : "Adicionar" }}
+    </button>
+    <div *ngIf="error" class="alert alert-danger mt-3">{{ error }}</div>
+  </form>
+</div>
